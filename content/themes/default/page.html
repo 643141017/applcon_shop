@@ -1,0 +1,12 @@
+{% extends 'layouts/layout.html' %}
+{% block title %}{{ page is defined ? page.getTitle() : 'Applcon'}}{% endblock %}
+{% block content %}
+    {% if page is defined %}
+        <h1>{{ page.getTitle()}}</h1>
+        <div>
+            {{ page.getContent() }}
+        </div>
+    {% else %}
+        <div class ="container ">You have not created this page</div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" class="app">
+<head>
+    {% set controller = this.view.getControllerName(), action =  this.view.getActionName()%}
+    {% set name = this.config.application.name, publicUrl = this.config.application.publicUrl %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="{{name}}, Phalcon, PHP, Stack">
+    <meta name="author" content="Applcon Team">
+
+    <link rel="shortcut icon" href="{{ getImageSrc('favicon.png') }}">
+    <title>{% block title %}{% endblock %}</title>
+
+    {{ this.assets.outputCss() }}
+
+    <script type="text/javascript">
+        var baseUri     = '/backend/';
+        var controller  = '{{ controller }}';
+        var action      = '{{ action }}';
+        var googleAnalytic = '{{ this.config.googleAnalytic }}';
+    </script>
+</head>
+
+<body>
+    <section id="wrapper">
+        {{ partial('partials/left_side') }}
+        <section id="page-wrapper" class="gray-bg">
+                {{ partial('partials/header') }}
+            <section class="wrapper wrapper-content">
+                <div class="m-b-md">{{ this.flashSession.output() }}</div>
+                {% block content %}{% endblock %}
+                {{ partial('partials/footer') }}
+            </section>
+        </section>
+        {{ partial('partials/right_side') }}
+    </section>
+    {{ this.assets.outputJs() }}
+    {% block scripts %}{% endblock %}
+</body>
+</html>

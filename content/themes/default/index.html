@@ -1,0 +1,5 @@
+{% extends 'layouts/layout.html' %}
+{% block title %}{{ this.config.application.tagline }}{% endblock %}
+{% block content %}
+{{ partial('index/' ~ action)}}
+{% endblock %}

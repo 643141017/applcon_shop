@@ -1,0 +1,100 @@
+{{ get_doctype() }}
+<!--[if IE 8 ]><html class="ie ie8" lang="en" class="default-style"> <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9" lang="en" class="default-style"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="default-style"> <!--<![endif]-->
+<head>
+    <!-- Add meta tags to refactor-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="{{name}}, Applcon">
+    <meta name="author" content="Applcon Team">
+    <meta property="og:title" content="{{ name }}">
+    <meta property="og:type"  content="website">
+    <meta property="og:image" content=" {{ name }}">
+    <meta property="og:url" content="{{publicUrl}}">
+    <link rel="icon" type="image/x-icon" href="{{ getImageSrc('favicon.png') }}">
+    <title>{% block title%}{% endblock %} - {{name}}</title>
+   
+    <!-- Main Style -->
+    {{ assets.outputCss('theme_css') }}
+
+    <!-- Icon fonts -->
+    <link rel="stylesheet" href="{{assets('vendor/fonts/ionicons.css')}}">
+    <link rel="stylesheet" href="{{assets('vendor/fonts/linearicons.css')}}">
+
+    <!-- Core stylesheets -->
+    <link rel="stylesheet" href="{{assets('vendor/css/rtl/bootstrap.css')}}" class="theme-settings-bootstrap-css">
+    <link rel="stylesheet" href="{{assets('vendor/css/rtl/appwork.css')}}" class="theme-settings-appwork-css">
+    <link rel="stylesheet" href="{{assets('vendor/css/rtl/theme-corporate.css')}}" class="theme-settings-theme-css">
+    <link rel="stylesheet" href="{{assets('vendor/css/rtl/colors.css')}}" class="theme-settings-colors-css">
+    <link rel="stylesheet" href="{{assets('vendor/css/rtl/uikit.css')}}">
+
+    {{ javascript_include(assets('vendor/js/material-ripple.js'))}}
+    {{ javascript_include(assets('vendor/js/layout-helpers.js'))}}
+
+    <!-- Theme settings -->
+    <!-- This file MUST be included after core stylesheets and layout-helpers.js in the <head> section -->
+    {{ javascript_include(assets('vendor/js/theme-settings.js'))}}
+    <!--
+    <script>
+        window.themeSettings = new ThemeSettings({
+            cssPath: '{{assets('vendor/css/rtl/')}}',
+            themesPath: '{{assets('vendor/css/rtl/')}}'
+        });
+    </script>
+    -->
+
+    <!-- Core scripts -->
+    {{ javascript_include(assets('vendor/js/pace.js'))}}
+
+    <!-- Page -->
+    <link rel="stylesheet" href="{{assets('css/shop.css')}}">
+
+    <!-- Libs -->
+    <link rel="stylesheet" href="{{assets('vendor/libs/swiper/swiper.css')}}">
+    <link rel="stylesheet" href="{{assets('vendor/libs/smartwizard/smartwizard.css')}}">
+
+    {{ this.assets.outputCss() }}
+    <script type="text/javascript">
+        var baseUri     = '{{ baseUri }}';
+        var controller  = '{{ controller }}';
+        var action      = '{{ action }}';
+        var googleAnalytic = '{{ googleAnalytic }}';
+    </script>
+</head>
+<body class="{{action}} {{controller}}">
+    <!-- Pace.js loader -->
+    <div class="page-loader"><div class="bg-primary"></div></div>
+
+    {{ this.flashSession.output() }}
+
+    {{ partial('partials/header')}}
+
+    {{ partial('partials/breadcrumb')}}
+
+    {% block content %}{% endblock %}
+
+    {{ partial('partials/footer')}}
+
+    <!-- Core scripts -->
+    {{ javascript_include(assets('vendor/js/jquery-3.2.1.min.js'))}}
+    {{ javascript_include(assets('vendor/libs/popper/popper.js'))}}
+    {{ javascript_include(assets('vendor/js/bootstrap.js'))}}
+
+    <!-- Libs -->
+    {{ javascript_include(assets('vendor/js/mega-dropdown.js'))}}
+    {{ javascript_include(assets('vendor/libs/swiper/swiper.js'))}}
+    {{ javascript_include(assets('vendor/libs/smartwizard/smartwizard.js'))}}
+
+    <!-- Page -->
+    {{ javascript_include(assets('js/shop.js'))}}
+
+
+    {{ assets.outputJs('theme_js') }}
+    {{ assets.outputJs() }}
+    {% block scripts%} {% endblock %}
+    <!-- End js -->
+</body>
+</html>
